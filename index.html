@@ -21,6 +21,8 @@
 	<!-- Start Theme -->
 	<script> let theme = new Theme(); theme.install(); theme.start(); </script> 
 
+	
+	<!-- Navbar -->
 	<nav class="navbar navbar-expand-lg sticky-top bm">
 		<a class="navbar-brand fh" href="#">Make Maker</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,6 +31,7 @@
 	</nav><br>
 	
 	<div class="container-fluid mb-5" >
+		<!-- Variables -->
 		<div class="card m-2 bm" style="width: 30rem">
 			<div class="card-body">
 				<h5 class="card-title fh">Variables</h5>
@@ -36,11 +39,12 @@
 			</div>
 		</div>
 		
+		<!-- Rules -->
 		<div class="card bm m-2" id="card1">
 			<div class="card-body" >
 				<div class="card-header row mb-2">
 					<h5 class="col fh">Rule 1</h5>
-					<h6 class="mr-3 mb-3 fh" data-toggle="collapse" data-target="#cardform1" style="cursor: pointer;">⌵</h6>
+					<h6 class="mr-3 mb-3 fh" data-toggle="collapse" data-target="#cardform1" style="cursor: pointer;">—</h6>
 				</div>
 				<form id="cardform1" class="collapse show">
 					<div class="form-group row">
@@ -61,59 +65,44 @@
 				</form>
 			</div>
 		</div>
+
+		<!-- Clean rule -->
+		<div class="card bm m-2" id="cleanrule" style="display: none;">
+			<div class="card-body" >
+				<div class="card-header row mb-2">
+					<h5 class="col fh">Clean Rule</h5>
+					<h6 class="mr-3 mb-3 fh" data-toggle="collapse" data-target="#cleanform" style="cursor: pointer;">—</h6>
+				</div>
+				<form id="cleanform" class="collapse show">
+					<div class="form-group row">
+						<label for="cmds" class="col-form-label col-sm-1 fh"><center>Perform</center></label>
+						<input type="text" id="cmds" class="form-control border-secondary col mr-4 bm" placeholder="commands">
+					</div>
+				</form>
+			</div>
+		</div>
+		
 		<button type="button" id="Rulebtn" class="btn btn-outline-secondary col-1 m-4" onclick="AddRule()" data-toggle="collapse" data-target="#card2">+ Rule</button>
+		<button type="button" id="Cleanbtn" class="btn btn-outline-secondary col-1 m-4" onclick="ShowClean()" data-toggle="collapse" data-target="#cleanrule">+ Clean</button>
+
 	</div>
 	
-	<div id="overlay" onclick="overoff()">
+	<!-- Overlay -->
+	<div id="overlay" onclick="HideOverlay()">
 		 <div  id="text">Overlay Text</div>
 	</div>
 	
+	<!-- Footer -->
 	<div class="navbar fixed-bottom mt-1 bm">
 		<div class="container">
 			<button class="btn btn-dark">Download</button>
-			<button class="btn btn-secondary" onclick="overon()">Preview</button>
+			<button class="btn btn-secondary" onclick="ShowOverlay()">Preview</button>
 		</div>
 	</div>
 	
-	<script>
-		var cnt = 2;
-		function AddRule()
-		{
-			var DivIns =
-				'<div class="card bm m-2" id="card'+String(cnt)+'">'+
-				'<div class="card-body">'+
-					'<div class="card-header row mb-2">'+
-						'<h5 class="col fh">Rule '+String(cnt)+'</h5>'+
-						'<h6 class="mr-3 mb-3 fh" data-toggle="collapse" data-target="#cardform'+String(cnt)+'" style="cursor: pointer;">⌵</h6>'+
-					'</div>'+
-					'<form id="cardform'+String(cnt)+'" class="collapse show">'+
-						'<div class="form-group row">'+
-							'<label for="cmds" class="col-form-label col-sm-1 fh"><center>Perform</center></label>'+
-							'<input type="text" id="cmds" class="form-control border-secondary col mr-4 bm" placeholder="commands">'+
-						'</div>'+
-						'<div class="form-group row">'+
-							'<label for="Targets" class="col-form-label col-sm-1 fh"><center>on</center></label>'+
-							'<input type="text" id="targets" class="form-control border-secondary col bm" placeholder="target files">'+
-							'<label for="dpends" class="col-form-label col-sm-2 fh"><center>if there are changes in</center></label>'+
-							'<input type="text" id="dpends" class="form-control border-secondary col mr-4 bm" placeholder="dependencies">'+
-						'</div>'+
-					'</form>'+
-				'</div>'+
-			'</div>';
-			$("#card"+String(cnt-1)).after(DivIns);
-			cnt++;
-			document.getElementById("Rulebtn").setAttribute("data-target","#card"+String(cnt-1));
-		}
-		
-		function overon()
-		{
-			document.getElementById("overlay").style.display = "block";
-		}
-		function overoff()
-		{
-			document.getElementById("overlay").style.display = "none";
-		}
-	</script>
+	
+	<!-- Functionality for the page -->
+	<script src="lib/scripts.js"></script>
 
 	<!-- JS Needed for Bootstrap -->
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
